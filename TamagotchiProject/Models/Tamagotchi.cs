@@ -1,19 +1,22 @@
 using System.Collections.Generic;
 
-namespace ToDoList.Models
+namespace TamagotchiProject.Models
 {
-  public class Item
+  public class Tamagotchi
   {
-    public string Description { get; set; }
-    private static List<Item> _instances = new List<Item> { };
+    public string Name { get; set; }
+    private static List<Tamagotchi> _instances = new List<Tamagotchi> { };
+    public static int totalCount = 0;
 
-    public Item(string description)
+    public Tamagotchi(string name)
     {
-      Description = description;
+      Name = name;
       _instances.Add(this);
+      totalCount++;
+      
     }
 
-    public static List<Item> GetAll()
+    public static List<Tamagotchi> GetAll()
     {
       return _instances;
     }

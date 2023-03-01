@@ -1,9 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using ToDoList.Models;
+using TamagotchiProject.Models;
 using System;
 
-namespace ToDoList.Tests
+namespace TamagotchiProject.Tests
 {
   [TestClass]
   public class ItemTests : IDisposable
