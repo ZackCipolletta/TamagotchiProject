@@ -11,15 +11,22 @@ namespace TamagotchiProject.Controllers
       [HttpGet("/")]
       public ActionResult Index()
       {
-        return View();
+        List<Tamagotchi> allItems = Tamagotchi.GetAll();
+        return View(allItems);
       }
 
       [HttpPost("/")]
-      public ActionResult Create(string tamaName)
+      public ActionResult Create(string tamagotchiName)
       {
-      Tamagotchi newTama = new Tamagotchi(tamaName);
-      List<Tamagotchi> allItems = Tamagotchi.GetAll();
-      return View(allItems);
+      Tamagotchi newTama = new Tamagotchi(tamagotchiName);
+      return RedirectToAction("Index");
+      }
+
+      public ActionResult Remove(int Id)
+      {
+        Tamagotchi tama = Tamagotchi.FindWithId(Id);
+        Tamagotchi.GetAll().Remove(tama);
+        return RedirectToAction("Index");
       }
 
     }

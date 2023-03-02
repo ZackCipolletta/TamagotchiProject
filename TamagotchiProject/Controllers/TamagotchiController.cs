@@ -8,38 +8,55 @@ namespace TamagotchiProject.Controllers
   public class TamagotchiController : Controller
   {
 
-    // [HttpGet("/items")]
-    // public ActionResult Index()
-    // {
-    //   List<Item> allItems = Item.GetAll();
-    //   return View(allItems);
-    // }
-
-    [HttpGet("/show")]
-    public ActionResult New()
+    public ActionResult Index()
     {
       return View();
     }
 
-  //   [HttpPost("/items")]
-  //   public ActionResult Create(string description)
-  //   {
-  //     Item myItem = new Item(description);
-  //     return RedirectToAction("Index");
-  //   }
 
-  //   [HttpPost("/items/delete")]
-  //   public ActionResult DeleteAll()
-  //   {
-  //     Item.ClearAll();
-  //     return View();
-  //   }
+    public ActionResult Show(int Id)
+    {
+      Tamagotchi tama = Tamagotchi.FindWithId(Id);
+      return View("Index", tama);
+    }
+    public ActionResult Feed(int Id)
+    {
+      Tamagotchi tama = Tamagotchi.FindWithId(Id);
+      tama.Feed();
+      return View("Index", tama);
+    }
+    public ActionResult GiveAttention(int Id)
+    {
+      Tamagotchi tama = Tamagotchi.FindWithId(Id);
+      tama.GiveAttention();
+      return View("Index", tama);
+    }
+    public ActionResult GiveSleep(int Id)
+    {
+      Tamagotchi tama = Tamagotchi.FindWithId(Id);
+      tama.GiveSleep();
+      return View("Index", tama);
+    }
 
-  //   [HttpGet("/items/{id}")]
-  //   public ActionResult Show(int id)
-  //   {
-  //     Item foundItem = Item.Find(id);
-  //     return View(foundItem);
-  //   }
+    //   [HttpPost("/items")]
+    //   public ActionResult Create(string description)
+    //   {
+    //     Item myItem = new Item(description);
+    //     return RedirectToAction("Index");
+    //   }
+
+    //   [HttpPost("/items/delete")]
+    //   public ActionResult DeleteAll()
+    //   {
+    //     Item.ClearAll();
+    //     return View();
+    //   }
+
+    //   [HttpGet("/items/{id}")]
+    //   public ActionResult Show(int id)
+    //   {
+    //     Item foundItem = Item.Find(id);
+    //     return View(foundItem);
+    //   }
   }
 }

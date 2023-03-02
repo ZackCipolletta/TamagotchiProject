@@ -6,79 +6,36 @@ using System;
 namespace TamagotchiProject.Tests
 {
   [TestClass]
-  public class ItemTests : IDisposable
+  public class TamagotchiTests : IDisposable
   {
 
     public void Dispose()
     {
-      Item.ClearAll();
+      Tamagotchi.ClearAll();
     }
 
     [TestMethod]
-    public void ItemConstructor_CreatesInstanceOfItem_Item()
+    public void TamagotchiConstructor_CreatesInstanceOfTamagotchi_Tamagotchi()
     {
-      Item newItem = new Item("test");
-      Assert.AreEqual(typeof(Item), newItem.GetType());
+      Tamagotchi newTamagotchi = new Tamagotchi("test");
+      Assert.AreEqual(typeof(Tamagotchi), newTamagotchi.GetType());
     }
 
     [TestMethod]
-    public void GetDescription_ReturnsDescription_String()
+    public void TamagotchiConstructor_ReturnsWithNameField_Tamagotchi()
     {
-      //Arrange
-      string description = "Walk the dog.";
-
-      //Act
-      Item newItem = new Item(description);
-      string result = newItem.Description;
-
-      //Assert
-      Assert.AreEqual(description, result);
+      string test = "eat my shorts";
+      Tamagotchi newTamagotchi = new Tamagotchi(test);
+      Assert.AreEqual(test, newTamagotchi.Name);
     }
 
     [TestMethod]
-    public void SetDescription_SetDescription_String()
+    public void TamagotchiConstructor_IncrementsTotalCountStaticField_Tamagotchi()
     {
-      //Arrange
-      string description = "Walk the dog.";
-      Item newItem = new Item(description);
-
-      //Act
-      string updatedDescription = "Do the dishes";
-      newItem.Description = updatedDescription;
-      string result = newItem.Description;
-
-      //Assert
-      Assert.AreEqual(updatedDescription, result);
-    }
-
-    [TestMethod]
-    public void GetAll_ReturnsEmptyList_ItemList()
-    {
-      // Arrange
-      List<Item> newList = new List<Item> { };
-
-      // Act
-      List<Item> result = Item.GetAll();
-
-      // Assert
-      CollectionAssert.AreEqual(newList, result);
-    }
-
-    [TestMethod]
-    public void GetAll_ReturnsItems_ItemList()
-    {
-      //Arrange
-      string description01 = "Walk the dog";
-      string description02 = "Wash the dishes";
-      Item newItem1 = new Item(description01);
-      Item newItem2 = new Item(description02);
-      List<Item> newList = new List<Item> { newItem1, newItem2 };
-
-      //Act
-      List<Item> result = Item.GetAll();
-
-      //Assert
-      CollectionAssert.AreEqual(newList, result);
+      string test = "eat my shorts";
+      int countBeforeTest = Tamagotchi.totalCount;
+      Tamagotchi newTamagotchi = new Tamagotchi(test);
+      Assert.AreEqual(countBeforeTest, Tamagotchi.totalCount - 1);
     }
   }
 }
